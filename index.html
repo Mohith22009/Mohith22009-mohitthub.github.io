@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mohith B. - AI & Machine Learning Professional</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: "Modern Professional" - A calm, neutral palette with a professional blue accent. -->
+    <!-- Application Structure Plan: A single-page, vertical-scrolling portfolio. The structure is thematic: Hero, Summary, an integrated Experience Timeline (combining internships and projects), a Skills Dashboard, and Education/Certifications. This structure provides a clear narrative of professional growth, moving from a high-level summary to detailed, interactive explorations of skills and experience. The combined timeline is more effective than separate lists, showing a continuous journey of learning and application. -->
+    <!-- Visualization & Content Choices: 
+        - Experience Timeline: Goal: Organize/Change. Method: Interactive accordion list (HTML/CSS/JS). Interaction: Click to expand details. Justification: Keeps the UI clean while allowing deep dives into specific roles/projects.
+        - Skills Dashboard: Goal: Compare/Inform. Method: Horizontal Bar Chart (Chart.js). Interaction: Hover for tooltips, filter buttons to change data views. Justification: More engaging and easier to scan than a static list; filtering allows users to focus on relevant skill sets.
+        - General Layout: Goal: Inform. Method: Tailwind CSS Grid/Flexbox. Justification: Ensures a clean, responsive, and professional presentation across all devices. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f9fa;
+            color: #343a40;
+        }
+        .nav-link {
+            transition: color 0.3s ease;
+        }
+        .nav-link:hover, .nav-link.active {
+            color: #007bff;
+        }
+        .timeline-item-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-in-out;
+        }
+        .timeline-item-content.open {
+            max-height: 500px;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 400px;
+            max-height: 50vh;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 500px;
+            }
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <header class="bg-white/80 backdrop-blur-lg sticky top-0 z-50 shadow-sm">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="text-xl font-bold text-gray-800">Mohith B.</div>
+            <div class="hidden md:flex space-x-8">
+                <a href="#summary" class="nav-link text-gray-600">Summary</a>
+                <a href="#experience" class="nav-link text-gray-600">Experience</a>
+                <a href="#skills" class="nav-link text-gray-600">Skills</a>
+                <a href="#education" class="nav-link text-gray-600">Education</a>
+            </div>
+            <div class="md:hidden">
+                <button id="menu-btn" class="text-gray-600 focus:outline-none">
+                    <span class="text-2xl">&#9776;</span>
+                </button>
+            </div>
+        </nav>
+        <div id="mobile-menu" class="hidden md:hidden px-6 pt-2 pb-4 space-y-2">
+            <a href="#summary" class="block nav-link text-gray-600">Summary</a>
+            <a href="#experience" class="block nav-link text-gray-600">Experience</a>
+            <a href="#skills" class="block nav-link text-gray-600">Skills</a>
+            <a href="#education" class="block nav-link text-gray-600">Education</a>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6 py-12">
+
+        <section id="hero" class="text-center py-16">
+            <h1 class="text-5xl md:text-6xl font-extrabold text-gray-900 leading-tight">Mohith B.</h1>
+            <p class="mt-4 text-xl md:text-2xl text-gray-600">AI, Machine Learning & Natural Language Processing</p>
+            <div class="mt-8 flex justify-center items-center space-x-6 text-gray-500">
+                <a href="mailto:1734948.bmohith@gmail.com" class="hover:text-blue-500 transition-colors">
+                    <span class="text-2xl">&#9993;</span>
+                    <span class="sr-only">Email</span>
+                </a>
+                <a href="tel:+918951874291" class="hover:text-blue-500 transition-colors">
+                     <span class="text-2xl">&#9742;</span>
+                     <span class="sr-only">Phone</span>
+                </a>
+                <a href="#" class="hover:text-blue-500 transition-colors">
+                    <span class="text-2xl">&#128279;</span>
+                    <span class="sr-only">LinkedIn</span>
+                </a>
+                <span class="flex items-center">
+                    <span class="text-2xl">&#128205;</span>
+                    <span class="ml-2">Bengaluru, Karnataka</span>
+                </span>
+            </div>
+        </section>
+
+        <section id="summary" class="py-16">
+            <div class="max-w-3xl mx-auto bg-white p-8 rounded-xl shadow-md">
+                <h2 class="text-3xl font-bold text-center mb-6 text-gray-800">Professional Summary</h2>
+                <p class="text-lg text-gray-700 leading-relaxed text-center">
+                    Highly motivated Electronics and Communication Engineering student with a strong passion for AI, Machine Learning, and Natural Language Processing. Proven ability to design, develop, and optimize deep learning models for a variety of applications, from real-time network packet analysis to edge AI solutions. Experienced in deploying models on resource-constrained devices, with a solid foundation in software development and distributed systems.
+                </p>
+            </div>
+        </section>
+
+        <section id="experience" class="py-16">
+            <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">Experience & Projects</h2>
+            <div class="relative max-w-4xl mx-auto">
+                <div class="absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-gray-300"></div>
+                <div id="timeline-container" class="space-y-12">
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="py-16">
+            <h2 class="text-3xl font-bold text-center mb-6 text-gray-800">Skills Dashboard</h2>
+            <p class="text-center text-gray-600 mb-8 max-w-2xl mx-auto">This chart provides a visual overview of my key technical skills. Use the buttons below to filter the categories and explore my proficiency in different areas of software development, machine learning, and deployment.</p>
+            <div class="flex justify-center flex-wrap gap-2 mb-8">
+                <button class="skill-filter-btn active bg-blue-500 text-white py-2 px-4 rounded-full" data-category="all">All Skills</button>
+                <button class="skill-filter-btn bg-gray-200 text-gray-700 py-2 px-4 rounded-full" data-category="ml">ML & Deep Learning</button>
+                <button class="skill-filter-btn bg-gray-200 text-gray-700 py-2 px-4 rounded-full" data-category="lang">Languages</button>
+                <button class="skill-filter-btn bg-gray-200 text-gray-700 py-2 px-4 rounded-full" data-category="tools">Tools & Deployment</button>
+            </div>
+            <div class="bg-white p-4 sm:p-8 rounded-xl shadow-md">
+                <div class="chart-container">
+                    <canvas id="skillsChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <section id="education" class="py-16">
+            <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">Education & Certifications</h2>
+            <div class="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto">
+                <div class="bg-white p-8 rounded-xl shadow-md">
+                    <h3 class="text-2xl font-bold mb-6 text-gray-800">Education</h3>
+                    <div class="space-y-6">
+                        <div>
+                            <p class="text-lg font-semibold">Amrita Vishwa Vidyapeetham</p>
+                            <p class="text-gray-600">Bachelor of Technology, Electronics and Communication Engineering</p>
+                            <p class="text-sm text-gray-500">2022 - 2026</p>
+                        </div>
+                        <div>
+                            <p class="text-lg font-semibold">K.V. DRDO</p>
+                            <p class="text-gray-600">High School Diploma</p>
+                            <p class="text-sm text-gray-500">2010 - 2022</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white p-8 rounded-xl shadow-md">
+                    <h3 class="text-2xl font-bold mb-6 text-gray-800">Certifications</h3>
+                    <ul id="certifications-list" class="space-y-3 list-disc list-inside text-gray-700">
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-gray-800 text-white text-center py-6">
+        <p>&copy; 2025 Mohith B. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const menuBtn = document.getElementById('menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            menuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            const navLinks = document.querySelectorAll('.nav-link');
+            const sections = document.querySelectorAll('section');
+
+            window.addEventListener('scroll', () => {
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    if (pageYOffset >= sectionTop - 60) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href').includes(current)) {
+                        link.classList.add('active');
+                    }
+                });
+            });
+            
+            const timelineData = [
+                {
+                    type: 'Internship',
+                    title: 'Research Intern - Edge AI & NLP',
+                    company: 'Indian Institute of Technology Guwahati',
+                    date: 'May 2025 - Ongoing',
+                    details: [
+                        'Developed and fine-tuned Transformer models (BERT, GPT) for context-aware intent detection and document classification.',
+                        'Researched and implemented Transformer-SNN hybrid models (SpikeFormer) to enable energy-efficient inference.',
+                        'Deployed optimized Transformer models on edge devices using ONNX/TFLite for real-time Edge AI NLP solutions.',
+                        'Benchmarked performance trade-offs (latency, accuracy, energy) across Transformer and SNN architectures.'
+                    ]
+                },
+                {
+                    type: 'Internship',
+                    title: 'Research Intern',
+                    company: 'Samsung',
+                    date: 'Mar 2024 - Jan 2025',
+                    details: [
+                        'Implemented channel estimation algorithms using USRP with 5G NR OAI-compliant PHY.',
+                        'Applied Machine Learning (TensorFlow, scikit-learn) for link adaptation and interference detection.',
+                        'Developed and tested 5G signal processing modules with TCP/IP stack integration.',
+                        'Designed AI-powered anomaly detection models to optimize network reliability.'
+                    ]
+                },
+                 {
+                    type: 'Project',
+                    title: 'AI-Powered Network Packet Analyzer',
+                    company: 'Personal Project',
+                    date: 'Side Project',
+                    details: [
+                        'Built a deep learning system using NLP (BERT, Word2Vec) to classify TCP/IP packet payloads in real-time.',
+                        'Converted raw network data into tokenized sequences for semantic analysis.',
+                        'Trained ML classifiers and Transformer models to detect anomalies like DDoS attacks.',
+                        'Deployed with Flask + Docker for real-time network monitoring.'
+                    ]
+                },
+                {
+                    type: 'Internship',
+                    title: 'Project Intern',
+                    company: 'Tata Institute of Fundamental Research',
+                    date: 'Dec 2024 - Jan 2025',
+                    details: [
+                        'Worked with organic electrochemical transistors (OECTs) and flexible biosensors to monitor electrical signaling in plants.',
+                        'Utilized AI models for pattern recognition and anomaly detection in bioelectrical signals to study plant stress responses.'
+                    ]
+                },
+                {
+                    type: 'Internship',
+                    title: 'Intern',
+                    company: 'Defence Research and Development Organisation (DRDO)',
+                    date: 'May 2024 - Jul 2025',
+                    details: [
+                        'Developed deep learning pipelines using CNNs and YOLOv10 for real-time aircraft detection in ISAR radar images.',
+                        'Applied computer vision and NLP fusion techniques to classify radar scenes.',
+                        'Optimized model deployment using PyTorch, ONNX, and OpenVINO for edge inference.'
+                    ]
+                },
+                {
+                    type: 'Project',
+                    title: 'Code Search Engine using CodeBERT',
+                    company: 'Personal Project',
+                    date: 'Side Project',
+                    details: [
+                        'Leveraged CodeBERT, a Transformer-based model, to enable semantic NLP-driven code search.',
+                        'Designed a dual-encoder Transformer architecture to map queries and code into a shared embedding space for high-precision retrieval.'
+                    ]
+                },
+                {
+                    type: 'Project',
+                    title: 'Detection of Mars Surface Using Deep Learning',
+                    company: 'Personal Project',
+                    date: 'Side Project',
+                    details: [
+                        'Developed and fine-tuned advanced CNN architectures (VGG-16, ResNet-50, Inception V3) for planetary image analysis.',
+                        'Leveraged Google Colab TPUs and NVIDIA CUDA/cuDNN for large-scale model optimization.',
+                        'Applied AI-driven computer vision on NASA HIRISE datasets.'
+                    ]
+                }
+            ];
+
+            const timelineContainer = document.getElementById('timeline-container');
+            timelineData.forEach((item, index) => {
+                const isLeft = index % 2 === 0;
+                const timelineElement = document.createElement('div');
+                timelineElement.className = `timeline-item relative flex items-center ${isLeft ? 'md:flex-row-reverse' : ''}`;
+                
+                const iconColor = item.type === 'Internship' ? 'bg-blue-500' : 'bg-green-500';
+
+                timelineElement.innerHTML = `
+                    <div class="hidden md:block w-1/2"></div>
+                    <div class="hidden md:block absolute top-1/2 transform -translate-y-1/2 ${isLeft ? 'right-1/2 -mr-4' : 'left-1/2 -ml-4'}">
+                        <div class="w-8 h-8 rounded-full ${iconColor} border-4 border-white flex items-center justify-center text-white font-bold">
+                           ${item.type === 'Internship' ? 'I' : 'P'}
+                        </div>
+                    </div>
+                    <div class="w-full md:w-1/2">
+                        <div class="bg-white p-6 rounded-lg shadow-lg cursor-pointer timeline-item-header">
+                            <p class="text-sm font-semibold ${item.type === 'Internship' ? 'text-blue-600' : 'text-green-600'}">${item.type.toUpperCase()}</p>
+                            <h3 class="text-xl font-bold mt-1">${item.title}</h3>
+                            <p class="text-gray-600 font-medium">${item.company}</p>
+                            <p class="text-sm text-gray-500 mt-1">${item.date}</p>
+                            <div class="timeline-item-content mt-4 text-gray-700">
+                                <ul class="space-y-2 list-disc list-inside">
+                                    ${item.details.map(detail => `<li>${detail}</li>`).join('')}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                timelineContainer.appendChild(timelineElement);
+            });
+
+            document.querySelectorAll('.timeline-item-header').forEach(header => {
+                header.addEventListener('click', () => {
+                    const content = header.querySelector('.timeline-item-content');
+                    content.classList.toggle('open');
+                });
+            });
+
+            const certifications = [
+                "Supervised Machine Learning: Regression and Classification - Stanford University",
+                "Introduction to Large Language Models - Coursera",
+                "Data Science by IBM - Coursera",
+                "Generative AI - Coursera",
+                "AI Fundamentals - Coursera",
+                "Graph Theory and Machine Learning - IISC",
+                "Machine Learning Pipelines with Azure ML Studio - Coursera"
+            ];
+            const certList = document.getElementById('certifications-list');
+            certifications.forEach(cert => {
+                const li = document.createElement('li');
+                li.textContent = cert;
+                certList.appendChild(li);
+            });
+
+            const skillsData = {
+                labels: ['Python', 'C/C++', 'PyTorch', 'TensorFlow', 'Transformers', 'NLP (Hugging Face)', 'Computer Vision (YOLO)', 'Docker', 'Git', 'ONNX/OpenVINO', 'Data Structures', 'OOP'],
+                datasets: [{
+                    label: 'Proficiency',
+                    data: [95, 80, 90, 85, 92, 90, 88, 80, 95, 85, 90, 85],
+                    backgroundColor: 'rgba(0, 123, 255, 0.6)',
+                    borderColor: 'rgba(0, 123, 255, 1)',
+                    borderWidth: 1
+                }],
+                categories: {
+                    all: [0,1,2,3,4,5,6,7,8,9,10,11],
+                    ml: [2,3,4,5,6],
+                    lang: [0,1],
+                    tools: [7,8,9]
+                }
+            };
+
+            const ctx = document.getElementById('skillsChart').getContext('2d');
+            const skillsChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: skillsData.labels,
+                    datasets: skillsData.datasets
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            max: 100,
+                            ticks: {
+                                callback: function(value) {
+                                    return value + "%"
+                                }
+                            }
+                        },
+                        y: {
+                            ticks: {
+                                autoSkip: false
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return context.dataset.label + ': ' + context.raw + '%';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            const filterButtons = document.querySelectorAll('.skill-filter-btn');
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    filterButtons.forEach(btn => {
+                        btn.classList.remove('active', 'bg-blue-500', 'text-white');
+                        btn.classList.add('bg-gray-200', 'text-gray-700');
+                    });
+                    button.classList.add('active', 'bg-blue-500', 'text-white');
+                    button.classList.remove('bg-gray-200', 'text-gray-700');
+                    
+                    const category = button.dataset.category;
+                    const indices = skillsData.categories[category];
+                    
+                    const filteredLabels = indices.map(i => skillsData.labels[i]);
+                    const filteredData = indices.map(i => skillsData.datasets[0].data[i]);
+
+                    skillsChart.data.labels = filteredLabels;
+                    skillsChart.data.datasets[0].data = filteredData;
+                    skillsChart.update();
+                });
+            });
+
+        });
+    </script>
+</body>
+</html>
